@@ -1,0 +1,58 @@
+# Clinica_medica Database
+
+Este projeto implementa um sistema de banco de dados para uma clínica médica. O banco de dados gerencia informações sobre pacientes, médicos e consultas, permitindo realizar operações CRUD (Criar, Ler, Atualizar e Excluir).
+
+## Estrutura do Banco de Dados
+
+### Tabelas
+
+1. **Pacientes**
+   - `id_paciente` (INT, PRIMARY KEY, AUTO_INCREMENT): Identificador único do paciente.
+   - `nome` (VARCHAR(100), NOT NULL): Nome do paciente.
+   - `data_nascimento` (DATE, NOT NULL): Data de nascimento do paciente.
+   - `telefone` (VARCHAR(15)): Telefone de contato do paciente.
+   - `endereco` (VARCHAR(255)): Endereço do paciente.
+
+2. **Medicos**
+   - `id_medico` (INT, PRIMARY KEY, AUTO_INCREMENT): Identificador único do médico.
+   - `nome` (VARCHAR(100), NOT NULL): Nome do médico.
+   - `especialidade` (VARCHAR(50)): Especialidade médica.
+   - `telefone` (VARCHAR(15)): Telefone de contato do médico.
+   - `crm` (VARCHAR(20), UNIQUE, NOT NULL): Número de registro do médico.
+
+3. **Consultas**
+   - `id_consulta` (INT, PRIMARY KEY, AUTO_INCREMENT): Identificador único da consulta.
+   - `id_paciente` (INT, FOREIGN KEY): Referência ao paciente (chave estrangeira para `Pacientes`).
+   - `id_medico` (INT, FOREIGN KEY): Referência ao médico (chave estrangeira para `Medicos`).
+   - `data_consulta` (DATE, NOT NULL): Data da consulta.
+   - `hora_consulta` (TIME, NOT NULL): Hora da consulta.
+   - `observacoes` (TEXT): Observações sobre a consulta.
+
+### Operações Suportadas
+
+- Inserção de pacientes, médicos e consultas.
+- Consulta de dados das tabelas.
+- Atualização de informações, como telefone de pacientes.
+- Exclusão de consultas com base no paciente.
+
+## Scripts
+
+- O script SQL para criar as tabelas e inserir os dados está disponível no arquivo principal.
+
+## Como Usar
+
+1. Execute o script para criar o banco de dados e as tabelas.
+2. Insira os dados iniciais de pacientes, médicos e consultas conforme necessário.
+3. Realize operações de consulta, atualização e exclusão utilizando os comandos SQL fornecidos.
+
+## Exemplo de Uso
+
+```sql
+-- Inserir um novo paciente
+INSERT INTO Pacientes (nome, data_nascimento, telefone, endereco) VALUES ('João Silva', '1990-05-14', '4891234567', 'Av. Brasil, 500');
+
+-- Atualizar telefone de um paciente
+UPDATE Pacientes SET telefone = '4898765432' WHERE id_paciente = 1;
+
+-- Excluir uma consulta
+DELETE FROM Consultas WHERE id_paciente = 2;
